@@ -2,7 +2,7 @@
 
 import unittest
 
-class TestConsole(Unittest.TestCase):
-	def test_console(self):
+class TestCase(Unittest.TestCase):
+	def test_case(self):
 
 		pass
