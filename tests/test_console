@@ -1,0 +1,8 @@
+#!/usr/bin/python3
+
+import unittest
+
+class TestConsole(Unittest.TestCase):
+	def test_console(self):
+
+		pass
