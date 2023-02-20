@@ -3,6 +3,6 @@
 import unittest
 
 class TestCase(Unittest.TestCase):
-	def test_format(self):
+	def test_case(self):
 
 		pass
