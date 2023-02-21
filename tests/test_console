@@ -2,7 +2,6 @@
 
 import unittest
 
-class TestCase(Unittest.TestCase):
+class TestCase(unittest.TestCase):
 	def test_format(self):
-
-		pass
+            pass
