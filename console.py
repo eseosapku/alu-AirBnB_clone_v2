@@ -114,35 +114,61 @@ class HBNBCommand(cmd.Cmd):
         pass
 
     def do_create(self, args):
-        """ Create an object of any class"""
+        """ Create an object of any class """
+        print(args)
+        # getting the arguments in place
+        items = args.split(" ")
+        print(items)
+        # get first argument
+        class_args = str(items[0])
+        param_list = []
+        dict_list = {}
+
+        for temp_one in items:
+            if '=' in temp_one:
+                param_list.append(temp_one)
+
+        # divid temp list
+        temp_one_list = []
+        for temp_one in param_list:
+
+            holder_list = temp_one.split('=')
+            # check for string 
+            if '\"' in temp_one:
+                holder_list[1] = str(holder_list[1].replace('\"', ''))
+                if '_' in holder_list[1]:
+                    holder_list[1].replace('_','')
+
+            elif '.' in holder_list[1]:
+                # check for float
+                holder_list[1] = float(holder_list[1])
+                # check for int
+            elif '.' not in temp_one \
+                    and '_' not in holder_list[1] \
+                    and '\"' not in holder_list[1]:
+                holder_list[1] = int(holder_list[1])
+
+            temp_one_list.append(holder_list)
+
+        print(temp_one_list)
+
+
         if not args:
             print("** class name missing **")
             return
-
-        line_list = args.split(" ")
-
-        if line_list[0] not in HBNBCommand.classes:
+        elif class_args not in HBNBCommand.classes:
             print("** class doesn't exist **")
             return
+        new_instance = HBNBCommand.classes[class_args]()
 
-        new_instance = HBNBCommand.classes[line_list[0]]()
+        # set the attirbutes to the instance
+        for temp_one in temp_one_list:
+            setattr(new_instance, temp_one[0], temp_one[1])
 
-        pair_list = line_list[1:]
-        for pair in pair_list:
-            k_v = pair.split("=")
-            key = k_v[0]
-            value = k_v[1]
-
-            if '_' in value:
-                value = value.replace("_", " ")
-            if value[0] == '"':
-                value = value.strip('"')
-
-            setattr(new_instance, key, value)
-
-        new_instance.save()
+        storage.save()
         print(new_instance.id)
-        models.storage.save()
+        storage.save()
+
 
     def help_create(self):
         """ Help information for the create method """
