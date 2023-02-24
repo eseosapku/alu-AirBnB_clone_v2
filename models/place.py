@@ -2,7 +2,6 @@
 """ Place Module for HBNB project """
 import os
 
-
 from models.base_model import BaseModel, Base
 from sqlalchemy import Column, String, Integer, Float, ForeignKey, Table
 from sqlalchemy.orm import relationship
@@ -20,7 +19,7 @@ place_amenity = Table('place_amenity', Base.metadata,
 
 
 class Place(BaseModel, Base):
-    """ A place to stay """
+    """ Place  """
     __tablename__ = 'places'
 
     city_id = Column(String(60), ForeignKey("cities.id", ondelete="CASCADE"),
@@ -46,8 +45,7 @@ class Place(BaseModel, Base):
     if os.getenv("HBNB_TYPE_STORAGE") != "db":
         @property
         def reviews(self):
-            """Returns the list of Review instances with place_id equals
-            to the current Place.id."""
+            """list of reviews with place id that equals current place id"""
 
             reviews = list(models.storage.all(Review).values())
 
@@ -56,8 +54,8 @@ class Place(BaseModel, Base):
 
         @property
         def amenities(self):
-            """Returns the list of Amenity instances based on
-            the attribute amenity_ids that contains all Amenity.id."""
+            """list of amenity instances based on the the amenity id 
+            that has all amenity ids"""
 
             amenities = list(models.storage.all(Amenity).values())
 
@@ -67,6 +65,6 @@ class Place(BaseModel, Base):
 
         @amenities.setter
         def amenities(self, value=None):
-            """Adds ids in amenity_ids ."""
+            """add ids in amenity ids ."""
             if type(value) == type(Amenity):
                 self.amenity_ids.append(value.id)
