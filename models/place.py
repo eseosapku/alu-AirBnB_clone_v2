@@ -54,7 +54,7 @@ class Place(BaseModel, Base):
 
         @property
         def amenities(self):
-            """list of amenity instances based on the the amenity id 
+            """list of amenity instances based on the amenity id
 that has all amenity ids"""
 
             amenities = list(models.storage.all(Amenity).values())
