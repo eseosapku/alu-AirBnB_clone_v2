@@ -1,37 +1,44 @@
 #!/usr/bin/python3
-"""module"""
+"""
+Module
+"""
 from fabric.api import put, run
 import os.path
 
+
 def do_deploy(archive_path):
-	""""
-	distribute archive to server
-	""""
-	if os.path.exists(archive_path) is False:
-		return False
-	try:
-		# upload archive to /tmp/ dir
-		put(archive_path, "/tmp/")
+    """
+    distributes an archive to your web servers
+    """
+    if os.path.exists(archive_path) is False:
+        return False
 
-        	# archive to folder
-        	# without extension
-        	file = archive_path.split("/")[-1]
-        	file_name = file.split(".")[0]
-        	folder = "/data/web_static/releases/{}/".format(file_name)
-        	run("mkdir -p {}".format(folder))
-        	run("tar -xzf /tmp/{} -C {}".format(file, folder))
+    try:
+        # Upload the archive to the /tmp/ directory of the web server
+        put(archive_path, "/tmp/")
 
-        	# Delete archive from server
-        	run("rm -r /tmp/{}".format(file))
+        # Uncompress the archive to the folder
+        # /data/web_static/releases/<archive filename without extension>
+        # on the web server
+        file = archive_path.split("/")[-1]
+        file_name = file.split(".")[0]
+        folder = "/data/web_static/releases/{}/".format(file_name)
+        run("mkdir -p {}".format(folder))
+        run("tar -xzf /tmp/{} -C {}".format(file, folder))
 
-        	run("mv {}web_static/* {}".format(folder, folder))
-        	run("rm -rf {}web_static".format(folder))
+        # Delete the archive from the web server
+        run("rm -r /tmp/{}".format(file))
 
-        	# Delete symbolic link
-        	run("rm -rf /data/web_static/current")
+        run("mv {}web_static/* {}".format(folder, folder))
+        run("rm -rf {}web_static".format(folder))
 
-        	# Create a new the symbolic link
-        	run("ln -s {} /data/web_static/current".format(folder))
-        	return True
+        # Delete the symbolic link /data/web_static/current from the web server
+        run("rm -rf /data/web_static/current")
+
+        # Create a new the symbolic link /data/web_static/current on
+        # the web server, linked to the new version of your code
+        # (/data/web_static/releases/<archive filename without extension>)
+        run("ln -s {} /data/web_static/current".format(folder))
+        return True
     except Exception:
-        	return False
+        return False
