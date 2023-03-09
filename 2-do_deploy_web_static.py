@@ -4,7 +4,9 @@ from fabric.api import put, run
 import os.path
 
 def do_deploy(archive_path):
-	""""distribute archive to server""""
+	""""
+	distribute archive to server
+	""""
 	if os.path.exists(archive_path) is False:
 		return False
 	try:

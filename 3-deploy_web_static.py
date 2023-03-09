@@ -5,7 +5,9 @@ do_deploy = __import__('2-do_deploy_web_static').do_deploy
 
 
 def deploy():
-    """function creates and distributes an archive to web servers"""
+    """
+	function creates and distributes an archive to web servers
+    """
     from fabric.api import env
     env.hosts = ['ip_web-01', 'ip_web-02']  # list of web servers
     archive_path = do_pack()
