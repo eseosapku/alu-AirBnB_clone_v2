@@ -9,6 +9,7 @@ from datetime import datetime
 from os.path import exists, isdir
 env.hosts = ['3.91.98.157', '54.164.137.93']
 
+
 def do_pack():
     """generates a tgz archive"""
     try:
@@ -20,6 +21,7 @@ def do_pack():
         return file_name
     except:
         return None
+
 
 def do_deploy(archive_path):
     """distributes an archive to the web servers"""
@@ -40,6 +42,7 @@ def do_deploy(archive_path):
         return True
     except:
         return False
+
 
 def deploy():
     """creates and distributes an archive to the web servers"""
