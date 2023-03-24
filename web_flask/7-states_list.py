@@ -17,7 +17,7 @@ def states_list():
                            states=storage.all('State').values())
 
 @app.teardown_appcontext
-def close_session(exception):
+def close_session(self):
     """
     End session after request 
     """

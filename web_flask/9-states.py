@@ -31,7 +31,7 @@ def states_id(id):
 
 
 @app.teardown_appcontext
-def teardown(exception):
+def teardown(self):
     """
     closes the session
     """

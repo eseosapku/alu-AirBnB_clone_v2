@@ -19,7 +19,7 @@ def cities():
 
 
 @app.teardown_appcontext
-def teardown(exception):
+def teardown(self):
     """
     Closes the Session
     """
