@@ -11,7 +11,7 @@ app = Flask(__name__)
 def hello_hbnb():
 	"""
 returns hello HBNB!
-	"""
+"""
 	return "Hello HBNB!"
 
 if __name__ == "__main__":
