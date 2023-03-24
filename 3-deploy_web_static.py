@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+<<<<<<< HEAD
 """
 Fabric script based on the file 2-do_deploy_web_static.py that creates and
 distributes an archive to the web servers
@@ -50,3 +51,20 @@ def deploy():
     if archive_path is None:
         return False
     return do_deploy(archive_path)
+=======
+"""script creates and distributes an archive to your web servers"""
+do_pack = __import__('1-pack_web_static').do_pack
+do_deploy = __import__('2-do_deploy_web_static').do_deploy
+
+
+def deploy():
+    """
+	function creates and distributes an archive to web servers
+    """
+    from fabric.api import env
+    env.hosts = ['ip_web-01', 'ip_web-02']  # list of web servers
+    archive_path = do_pack()
+    if archive_path is None:  # if archive_path is None:
+        return False
+    return do_deploy(archive_path)  # deploy = do_pack() + do_deploy()
+>>>>>>> a8c4b288fb66d0ef1047421a7606ff8ed4c0fe17
