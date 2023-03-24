@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 """ starts a Flask web application """
 from flask import Flask
+from flask import render_template
+from markupsafe import Markup
 app = Flask(__name__)
 
 
@@ -50,6 +52,7 @@ def number_template(n):
     """
     returns HTML page if n is an integer
     """
+    n = Markup.escape(n)
     return render_template('5-number.html', number=n)
 
 
@@ -58,6 +61,10 @@ def number_odd_or_even(n):
     """
     returns n is a number
     """
+    if n % 2 == 0:
+        odd_or_even = 'even'
+    else:
+        odd_or_even = 'odd'
     return render_template('6-number_odd_or_even.html', number=n)
 
 
