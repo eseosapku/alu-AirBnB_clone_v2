@@ -1,8 +1,5 @@
 #!/usr/bin/python3
-"""
-starts a Flask web application 
-"""
-
+""" starts a Flask web application """
 from flask import Flask
 app = Flask(__name__)
 
@@ -38,6 +35,7 @@ def python(text="is cool"):
     return Python followed by the text variable
     """
     return "Python {}".format(text.replace('_', ' '))
+
 
 @app.route('/number/<int:n>', strict_slashes=False)
 def number(n):
