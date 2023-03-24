@@ -10,6 +10,7 @@ def hello_hbnb():
     # """returns hello HBNB!"""
     return "Hello HBNB!"
 
+
 @app.route("/hbnb")
 def hbnb():
     # hbnb end point
