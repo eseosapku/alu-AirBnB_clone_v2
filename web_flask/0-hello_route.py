@@ -9,10 +9,7 @@ app = Flask(__name__)
 
 @app.route('/', strict_slashes=False)
 def hello_hbnb():
-"""
-returns hello HBNB!
-"""
-	return "Hello HBNB!"
+    return "Hello HBNB!"
 
 if __name__ == "__main__":
     # """ everything starts here """
