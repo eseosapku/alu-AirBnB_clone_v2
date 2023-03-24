@@ -5,14 +5,14 @@ app = Flask(__name__)
 app.url_map.strict_slashes = False
 
 
-@app.route('/', strict_slashes=False)
+@app.route('/')
 def hello_hbnb():
     """
     return Hello HBNB!
     """
     return "Hello HBNB!"
 
-@app.route('/hbnb', strict_slashes=False)
+@app.route('/hbnb')
 def hbnb():
     """
     return HBNB
