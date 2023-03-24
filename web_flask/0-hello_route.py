@@ -11,8 +11,8 @@ app = Flask(__name__)
 def hello_hbnb():
 	"""
 returns hello HBNB!
-	"""
-	return "Hello HBNB!"
+"""
+return "Hello HBNB!"
 
 if __name__ == "__main__":
-	app.run(host="0.0.0.0", port=5000, debug=True)
+app.run(host="0.0.0.0", port=5000, debug=True)
