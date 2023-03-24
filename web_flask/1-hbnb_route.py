@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-""" Start Flask web application """
+""" flask application starting """
 from flask import Flask
 app = Flask(__name__)
 app.url_map.strict_slashes = False
