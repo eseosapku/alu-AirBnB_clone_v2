@@ -34,6 +34,8 @@ def python(text="is cool"):
     """
     return Python followed by the text variable
     """
+    if text is not 'is cool':
+        text = text.replace('_', ' ')
     return "Python {}".format(text.replace('_', ' '))
 
 
